@@ -9,7 +9,7 @@ export async function GET() {
     IRON_OPTIONS
   );
 
-  session.destroy();
+  await session.destroy();
 
   return NextResponse.json({ status: 200 });
 }

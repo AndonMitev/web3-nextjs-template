@@ -45,8 +45,8 @@ export const authenticationAdapter = createAuthenticationAdapter({
     return true;
   },
   signOut: async () => {
-    await signOutAction();
     await fetch('/api/logout');
+    await signOutAction();
     eventEmitter.emit(EMITTER_EVENTS.SIGN_OUT);
   }
 });
