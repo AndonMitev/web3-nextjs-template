@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import CryptoProfileCard from './components/CryptoProfileCard';
 
 export default function Home() {

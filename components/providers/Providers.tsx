@@ -28,6 +28,3 @@ export default async function Providers({ children }: ProvidersProps) {
     </ThemeProvider>
   );
 }
-function getCookieAction() {
-  throw new Error('Function not implemented.');
-}

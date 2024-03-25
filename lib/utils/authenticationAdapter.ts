@@ -1,15 +1,18 @@
 import { createAuthenticationAdapter } from '@rainbow-me/rainbowkit';
 import { SiweMessage } from 'siwe';
+import { signInAction, signOutAction } from '../actions/auth';
+import useIsAuth from '../hooks/useIsAuth';
+import { eventEmitter } from '../config/eventEmitter';
+import { EMITTER_EVENTS } from '../constants';
 
 export const authenticationAdapter = createAuthenticationAdapter({
   getNonce: async () => {
-    console.log('called');
-    // const response = await fetch('/api/nonce');
-    // return response.text()
-    return new Promise((resolve) => resolve('test_nonce'));
+    const response = await fetch('/api/nonce');
+    const data: { nonce: string } = await response.json();
+
+    return new Promise((resolve) => resolve(data.nonce));
   },
   createMessage: ({ nonce, address, chainId }) => {
-    console.log('createMessage');
     return new SiweMessage({
       domain: window.location.host,
       address,
@@ -21,19 +24,29 @@ export const authenticationAdapter = createAuthenticationAdapter({
     });
   },
   getMessageBody: ({ message }) => {
-    console.log('getMessageBody');
     return message.prepareMessage();
   },
   verify: async ({ message, signature }) => {
-    console.log('verify');
-    const verifyRes = await fetch('/api/verify', {
+    const response = await fetch('/api/verify', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ message, signature })
     });
-    return Boolean(verifyRes.ok);
+
+    if (!response.ok) {
+      throw new Error('Failed to verify signature');
+    }
+    const data = await response.json();
+
+    await signInAction({ jwt: data.jwt });
+
+    eventEmitter.emit(EMITTER_EVENTS.SIGN_IN);
+
+    return true;
   },
   signOut: async () => {
+    await signOutAction();
     await fetch('/api/logout');
+    eventEmitter.emit(EMITTER_EVENTS.SIGN_OUT);
   }
 });
