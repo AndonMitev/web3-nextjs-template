@@ -1,7 +1,6 @@
 import { createAuthenticationAdapter } from '@rainbow-me/rainbowkit';
 import { SiweMessage } from 'siwe';
 import { signInAction, signOutAction } from '../actions/auth';
-import useIsAuth from '../hooks/useIsAuth';
 import { eventEmitter } from '../config/eventEmitter';
 import { EMITTER_EVENTS } from '../constants';
 
