@@ -50,7 +50,7 @@ export default function RootLayout({
     <html lang='en'>
       <body className={`${inter.className} h-dvh`}>
         <Providers>
-          <div className='flex flex-col h-full'>
+          <div className='flex flex-col h-full bg-neutral-900'>
             <Navbar />
             <div className='flex-1'>{children}</div>
             <Footer />

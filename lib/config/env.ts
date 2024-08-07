@@ -6,7 +6,9 @@ export const env = createEnv({
    * Serverside Environment variables, not available on the client.
    * Will throw if you access these variables on the client.
    */
-  server: {},
+  server: {
+    JWT_SECRET_KEY: z.string()
+  },
   /*
    * Environment variables available on the client (and server).
    *
@@ -22,6 +24,7 @@ export const env = createEnv({
    * 💡 You'll get type errors if not all variables from `server` & `client` are included here.
    */
   runtimeEnv: {
+    JWT_SECRET_KEY: process.env.JWT_SECRET_KEY,
     NEXT_PUBLIC_APP_BASE_URL: process.env.NEXT_PUBLIC_APP_BASE_URL
   }
 });
