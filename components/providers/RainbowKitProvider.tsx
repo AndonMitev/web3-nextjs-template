@@ -13,7 +13,7 @@ import { authenticationAdapter } from '@/lib/utils/authenticationAdapter';
 import useAsyncEffect from '@/lib/hooks/useAsyncEffect';
 import { isAuthAction } from '@/lib/actions/auth';
 import { Optional } from '@/lib/types/common';
-import { eventEmitter } from '@/lib/config/eventEmitter';
+import { eventEmitter } from '@/lib/config/clients/eventEmitter';
 import { EMITTER_EVENTS } from '@/lib/constants';
 
 type RainbowKitProviderProps = {

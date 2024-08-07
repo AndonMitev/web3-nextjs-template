@@ -5,6 +5,7 @@ import { NextResponse } from 'next/server';
 import { SiweMessage } from 'siwe';
 import { SignJWT } from 'jose';
 import { env } from '@/lib/config/env';
+import { JWT_CONFIG } from '@/lib/constants';
 
 export async function POST(request: Request) {
   const session = await getIronSession<{ nonce: string }>(
@@ -35,7 +36,7 @@ async function generateJwt(payload: { address: string; chainId: number; domain: 
   return await new SignJWT(payload)
     .setProtectedHeader({ alg: 'HS256' })
     .setIssuedAt()
-    .setIssuer('YOUR_ISSUER')
-    .setAudience('YOUR_AUDIENCE')
+    .setIssuer(JWT_CONFIG.ISSUER)
+    .setAudience(JWT_CONFIG.AUDIENCE)
     .sign(new TextEncoder().encode(env.JWT_SECRET_KEY));
 }

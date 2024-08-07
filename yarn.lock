@@ -6295,6 +6295,27 @@ __metadata:
   languageName: node
   linkType: hard
 
+"next-safe-action@npm:^7.4.3":
+  version: 7.4.3
+  resolution: "next-safe-action@npm:7.4.3"
+  peerDependencies:
+    next: ">= 14.0.0"
+    react: ">= 18.2.0"
+    react-dom: ">= 18.2.0"
+    valibot: ">= 0.36.0"
+    yup: ">= 1.0.0"
+    zod: ">= 3.0.0"
+  peerDependenciesMeta:
+    valibot:
+      optional: true
+    yup:
+      optional: true
+    zod:
+      optional: true
+  checksum: 10c0/a5017748068355d3aa5dc45b97f107f5afe66f9dbdec9b26458a3400745472bfd6850d501c09294ee66f14d7ceedf1fad0a046e273be0bdd6adeef5f07c478cf
+  languageName: node
+  linkType: hard
+
 "next-themes@npm:^0.2.1":
   version: 0.2.1
   resolution: "next-themes@npm:0.2.1"
@@ -8739,6 +8760,7 @@ __metadata:
     nanostores: "npm:^0.10.0"
     next: "npm:^14.2.5"
     next-auth: "npm:^4.24.7"
+    next-safe-action: "npm:^7.4.3"
     next-themes: "npm:^0.2.1"
     postcss: "npm:^8"
     react: "npm:^18"
